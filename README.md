@@ -1,17 +1,20 @@
 # RISC-V projects summary
 ## RISC-V chips tapped out 
 
-| Chip name     | CPU speed     | Bits  | CPU core  | Release time | Note |
-| ------------- |:-------------:| -----:| ------------- |:-------------:| -----:|
-|  SiFive's     |:-------1.5GHz:| -64-bit-:| ------------- |:-------------:| -----:|
-|  U54-MC       |    
-|  Coreplex     | 
+| Chip name     | CPU speed     | Bits  | CPU core  | Release time |
+| ------------- |:-------------:| -----:| ------------- |:-------------:|
+|  U54-MC       | 1.5GHz| 64-bit|  4 U54 cores and 1 E51 |2017 Oct|
+|  E310         | 320 MHz| 32-bit|  E31 |2016 Nov|
+ 
 *This note is based on "Mobile Trusted Computing", Proceedings of the IEEE, Vol. 102, No. 8, August 2014. Reference link is [here](http://ieeexplore.ieee.org/document/6856168/)*
 
 Trusted Computing Base (TCB) consists of hardware and firmware components that need to be trusted unconditionally. They are trust anchors of the computing system.
 
-## Platform Integrity: 
-Integrity of platform code (OS) can be verified either during system boot or at device runtime. Prevent or detect usage of platform versions that have been modified without authorization.
+## RISC-V on-going projects(academia) 
+1.The Indian Institute of Technology Madras is developing six RISC-V open-source CPU designs for six distinct uses, from a small 32-bit CPU for the internet of things (IoT) to large, 64-bit CPUs designed for warehouse-scale computers such as server farms based on RapidIO and Hybrid Memory Cube technologies. Link is [here](http://caslab.csl.yale.edu/workshops/hasp2017/HASP17-02_slides.pdf)
+
+Among the 6 one is for security: Experimental security oriented 64-bit variants with tagged ISA, single address space support, decoupling of protection from memory management.Link is [here](http://rise.cse.iitm.ac.in/shakti.html)
+
 
 * **Secure Boot**: device startup process is stopped if any modification of the launched platform components is detected. Common approach is to use code signing combined with making the beginning of the boot sequence immutable by storing it within the TCB during manufacturing. The processor must unconditionally start executing from this memory location. Boot code certificates contain hashes of booted code, signed with respect to a verification root, such as the device manufacturer public key stored on the device. Use boot code certificates to verify the integrity of the booted components. Validate the signature of the system component launched first (boot loader) and in turn verify the next component launched (OS kernel) and so on. Failure on any validation steps will abort the boot process. (a) immutable boot sequence, (b) verification root, (c) integrity-protected cryptographic mechanism.
 
