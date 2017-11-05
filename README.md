@@ -1,7 +1,7 @@
 # RISC-V-summary
 ## RISC-V chips tapped out 
 
-| Chip name     | CPU speed     | Bits  | CPU core  | Release time | Note
+| Chip name     | CPU speed     | Bits  | CPU core  | Release time | Note |
 | ------------- |:-------------:| -----:|
 | col 3 is      | right-aligned | $1600 |
 
