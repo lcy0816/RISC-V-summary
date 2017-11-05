@@ -6,48 +6,32 @@
 |  U54-MC       | 1.5GHz| 64-bit|  4 U54 cores and 1 E51 |2017 Oct|
 |  E310         | 320 MHz| 32-bit|  E31 |2016 Nov|
  
-*This note is based on "Mobile Trusted Computing", Proceedings of the IEEE, Vol. 102, No. 8, August 2014. Reference link is [here](http://ieeexplore.ieee.org/document/6856168/)*
-
-Trusted Computing Base (TCB) consists of hardware and firmware components that need to be trusted unconditionally. They are trust anchors of the computing system.
+*This summary is a information gathering from the Internet*
 
 ## RISC-V on-going projects(academia) 
 1.The Indian Institute of Technology Madras is developing six RISC-V open-source CPU designs for six distinct uses, from a small 32-bit CPU for the internet of things (IoT) to large, 64-bit CPUs designed for warehouse-scale computers such as server farms based on RapidIO and Hybrid Memory Cube technologies. Link is [here](http://caslab.csl.yale.edu/workshops/hasp2017/HASP17-02_slides.pdf)
 
 Among the 6 one is for security: Experimental security oriented 64-bit variants with tagged ISA, single address space support, decoupling of protection from memory management.Link is [here](http://rise.cse.iitm.ac.in/shakti.html)
 
+2. The Computer Laboratory, University of Cambridge, in collaboration with the FreeBSD Project, has ported the FreeBSD operating system to 64-bit RISC-V to use as a hardware-software research platform.Link is [here](http://freebsdfoundation.blogspot.co.uk/2016/02/initial-freebsd-risc-v-architecture.html)
 
-* **Secure Boot**: device startup process is stopped if any modification of the launched platform components is detected. Common approach is to use code signing combined with making the beginning of the boot sequence immutable by storing it within the TCB during manufacturing. The processor must unconditionally start executing from this memory location. Boot code certificates contain hashes of booted code, signed with respect to a verification root, such as the device manufacturer public key stored on the device. Use boot code certificates to verify the integrity of the booted components. Validate the signature of the system component launched first (boot loader) and in turn verify the next component launched (OS kernel) and so on. Failure on any validation steps will abort the boot process. (a) immutable boot sequence, (b) verification root, (c) integrity-protected cryptographic mechanism.
-
-* **Authenticated Boot**: started platform components are measured but not verified with respect to any reference values. All measurements are logged in integrity-protected volatile memory. Boot loader measures the first component launched which in turn measures the next one and so on. Recorded measurements represent the state of the platform components after boot, and can be used for local access control enforcement or remote attestation. 
-
-Three trust anchors: (a) integrity-protected volatile memory, (b) cryptographic mechanism.
-
-Boot time integrity protects the system during bootup, can not protect the system after it is booted. In runtime platform integrity verification, a trusted software component monitors the integrity of the platform code continuously and repairs modified components automatically if possible. Integrity of the monitors can be verified using the verification techniques described above.
-
-## Secure Storage: 
-Store data on the device to disallow unauthorized access by REE components. Confidential and integrity-protected device-specific key that can be accessed only by authorized code. The key is initialized during manufacturing and stored in a protected memory area on the processor chip preventing extraction of the key through physical attacks. 
-
-Two trust anchors: (a) device-specific key, (b) cryptographic mechanisms.
-
-## Isolated Execution:
-The ability of running security-critical code outside the control of the untrusted REE. Isolated execution combined with secure storage constitutes a TEE, which allows security applications resist REE compromise. TEE is a subset of the mobile device hardware TCB, can be seen as a component of the TCB. The cryptographic keys never leave the TEE. Need support in isolated execution of arbitrary code for application-specific algorithms. Hardware configuration need to provide an interface (TEE entry) through which the executable code (trusted applications) can be loaded for execution using the protected volatile memory.
-
-TEE code certificate (1) authorizes code execution within the TEE, (2) authorizes trusted applications to access the device key and other device resources such as confidential data and hardware interfaces. The access to the device key and other device resources may be controlled by measured and saved platform states during authenticated boot process.
-
-TEE management layer (software or firmware component) provides runtime environment for trusted applications and enforce access control to protected resources. The integrity of the management layer must be verified either as part of the boot time/runtime platform integrity verification, or on demand when trusted applications are loaded for execution. 
-
-Three anchors: (a) isolated memory (volatile or nonvolatile), (b) cryptographic mechanisms, (c) verification boot.
-
-## Device Authentication:
-An external service provider can use device authentication to verify the identity of the mobile device and TEE. The identity may include device manufacturer information that can imply compliance to external service provider requirements. An identity certificate that is signed with respect to the aforementioned verification root binds an assigned identity to the base identity. Examples of International Mobile Equipment Identifier (IMEI), link-layer identities such as Bluetooth and WiFi addresses.
-
-## Attestation and Provisioning:
-An externally verifiable statement about the software configuration running on a device is called remote attestation. Remote attestation allows an external service provider to verify that a device is running a compliant platform version. Remote attestation implementation provides statements signed with the certified device key over authenticated measurements (e.g., cryptographic hash digests) of the firmware and software components loaded at boot time. 
-
-The process of securely sending secrets and code to TEE of the target device is called provisioning. Device certificates do not include user identities and thus provisioning user authentication must be implemented by other means. All cryptographic keys needed for secure storage, isolated execution, device authentication, attestation, and provisioning can be derived from the same device key. 
-
-## TEE Architecture:
-Isolation needed for TEE can be achieved via (a) separating security elements, (b) secure processor modes, and (c) virtualization. A TEE instance is a processing environment that is isolated from the REE device OS. Single TEE instance for TEE architectures based on dedicated security chips and processor modes. Multiple TEE instances can be achieved through virtualization and emerging processor architectures. TEE provides API to allow REE applications to execute trusted applications and to read and write data in TEE. Single instance TEE needs TEE management layer, while multiple instance TEE may not use a management layer. In terms of size and complexity, the management layer is likely to be significantly smaller than the REE device OS, thus its attack surface is smaller. 
+3 Sanctum is using a RISC-V rocket core to implement their design.Link is [here](https://eprint.iacr.org/2015/564.pdf)
 
 
+## RISC-V on-going projects or products(industry)
+1 Codasip and SecureRF Demonstrate RISC-V Compliant Codix IP for Secure IoT Applications.Link is [here](https://www.securerf.com/press-release/codasip-securerf-demonstrate-risc-v-compliant-codix-ip/)
+
+2 Technolution developed a private softcore with RISC-V for safety and security applications. Link is [here](https://www.technolution.eu/en/about-us/publications/405-security-due-to-open-source-processor-architecture-risc-v.html)
+
+3.Nvidia plans to use RISC-V to replace their Falcon processor on their GeForce graphics cards. Vidoe link is [here](https://www.youtube.com/watch?v=gg1lISJfJI0)
+
+4. A founder of Adapteva plans to use RISC-V, in a successor to their manycore accelerator product. Link is [here](http://www.adapteva.com/andreas-blog/why-i-will-be-using-the-risc-v-in-my-next-chip/)
+
+5. LowRISC aims to implement a fully open-source system on a chip (SoC) based on the 64-bit RISC-V ISA.Link is [here](http://www.lowrisc.org/)
+
+6.E TH Zurich and the University of Bologna have cooperatively developed the PULPino processor as part of the PULP (Parallel Ultra-Low Power) project using RISC-V. Link is [here](http://www.pulp-platform.org/)
+
+7 Bluespec and Microsemi is working on the EDA tools of RISC-V.Link is [here](http://bluespec.com/riscv-verification-factory/) and [here](https://www.microsemi.com/products/fpga-soc/mi-v-embedded-ecosystem/risc-v-cpu)
+
+8 Microsemi has a open-source project SoftConsole which is a free Eclipse based Integrated Development Environment supporting the development and debugging of bare metal RISC-V software. Link is [here](https://github.com/RISCV-on-Microsemi-FPGA/SoftConsole)
 
