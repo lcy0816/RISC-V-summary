@@ -1,7 +1,5 @@
-# RISC-V-summary
+# Read me
 
-# RISC-V projects summary
-
-*This summary is a information gathering from the Internet*
+*The RISC-V projects summary summary is a information gathering from the Internet*
 
 Check the RISC-V-summary file.
