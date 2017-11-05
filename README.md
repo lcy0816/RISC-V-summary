@@ -2,7 +2,7 @@
 ## RISC-V chips tapped out 
 
 | Chip name     | CPU speed     | Bits  | CPU core  | Release time | Note |
-| ------------- |:-------------:| -----:|
+| ------------- |:-------------:| -----:| ------------- |:-------------:| -----:|
 | col 3 is      | right-aligned | $1600 |
 
 *This note is based on "Mobile Trusted Computing", Proceedings of the IEEE, Vol. 102, No. 8, August 2014. Reference link is [here](http://ieeexplore.ieee.org/document/6856168/)*
