@@ -1,10 +1,11 @@
-# RISC-V-summary
+# RISC-V projects summary
 ## RISC-V chips tapped out 
 
 | Chip name     | CPU speed     | Bits  | CPU core  | Release time | Note |
 | ------------- |:-------------:| -----:| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-
+|  SiFive's     |:-------1.5GHz:| -64-bit-:| ------------- |:-------------:| -----:|
+|  U54-MC       |    
+|  Coreplex     | 
 *This note is based on "Mobile Trusted Computing", Proceedings of the IEEE, Vol. 102, No. 8, August 2014. Reference link is [here](http://ieeexplore.ieee.org/document/6856168/)*
 
 Trusted Computing Base (TCB) consists of hardware and firmware components that need to be trusted unconditionally. They are trust anchors of the computing system.
